@@ -47,12 +47,11 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
 .searchbar input:focus{border-color:#f5b800}
 #searchInfo{margin-top:10px;font-size:14px;font-weight:700;color:#8a6d00}
 .chnav{display:flex;gap:8px;padding:10px 0}
-.chnav a{flex:1;text-align:center;padding:10px 0;border-radius:999px;background:#fff;border:1px solid #f0e6b8;font-weight:700;font-size:15px;color:#333;text-decoration:none}
+.chcol{flex:1;display:flex;flex-direction:column;gap:6px}
+.chmain{display:block;text-align:center;padding:10px 0;border-radius:999px;background:#fff;border:1px solid #f0e6b8;font-weight:700;font-size:15px;color:#333;text-decoration:none}
+.chsubs{display:flex;flex-wrap:wrap;gap:6px}
+.chsubs a{padding:5px 10px;border-radius:999px;background:#fff;border:1px solid #f0e6b8;font-size:12.5px;color:#333;text-decoration:none}
 #sec-toss,#sec-coupang,#sec-naver{scroll-margin-top:76px}
-.catnav{margin-bottom:8px}
-.catrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}
-.catlabel{font-weight:800;font-size:13px;color:#8a6d00;min-width:36px}
-.catrow a{padding:6px 12px;border-radius:999px;background:#fff;border:1px solid #f0e6b8;font-size:13px;color:#333;text-decoration:none}
 h2.sec{scroll-margin-top:76px}
 </style>
 </head>
@@ -74,8 +73,7 @@ h2.sec{scroll-margin-top:76px}
 <input type="text" id="searchInput" placeholder="상품명을 입력해 보세요">
 <div id="searchInfo" style="display:none"></div>
 </div>
-<nav class="chnav"><a href="#sec-toss">토스</a><a href="#sec-coupang">쿠팡</a><a href="#sec-naver">네이버</a></nav>
-<div class="catnav"><div class="catrow"><span class="catlabel">토스</span><a href="#sec-toss">오늘 선착순 특가</a><a href="#sec-best">오늘 많이 구매한 상품</a><a href="#sec-cat">카테고리 인기 상품 순위</a></div><div class="catrow"><span class="catlabel">쿠팡</span><a href="#cp-goldbox">골드박스</a><a href="#cp-rocket">로켓배송 할인</a><a href="#cp-fresh">로켓프레시</a><a href="#cp-new">이달의 신상</a><a href="#cp-wow">와우회원 할인</a></div><div class="catrow"><span class="catlabel">네이버</span><a href="#nv-humid">가습기</a><a href="#nv-digital">가전·디지털</a><a href="#nv-life">생활잡화</a><a href="#nv-beauty">뷰티</a><a href="#nv-fashion">패션잡화</a></div></div>
+<nav class="chnav"><div class="chcol"><a class="chmain" href="#sec-toss">토스</a><div class="chsubs"><a href="#sec-toss">오늘 선착순 특가</a><a href="#sec-best">오늘 많이 구매한 상품</a><a href="#sec-cat">카테고리 인기 상품 순위</a></div></div><div class="chcol"><a class="chmain" href="#sec-coupang">쿠팡</a><div class="chsubs"><a href="#cp-goldbox">골드박스</a><a href="#cp-rocket">로켓배송</a><a href="#cp-fresh">로켓프레시</a><a href="#cp-new">이달의 신상</a><a href="#cp-wow">와우회원 할인</a></div></div><div class="chcol"><a class="chmain" href="#sec-naver">네이버</a><div class="chsubs"><a href="#nv-humid">가습기</a><a href="#nv-digital">가전·디지털</a><a href="#nv-life">생활잡화</a><a href="#nv-beauty">뷰티</a><a href="#nv-fashion">패션잡화</a></div></div></nav>
 <h2 class="sec sec-deal" id="sec-toss">오늘 선착순 특가</h2>
 <div class="grid">
     <div class="card">
@@ -8716,7 +8714,7 @@ h2.sec{scroll-margin-top:76px}
       </div>
     </div>
 </div>
-<h2 class="sec" id="cp-rocket" style="background:#e63946;color:#fff">쿠팡 로켓배송 할인 <span style="font-size:13px;font-weight:400">20개</span></h2>
+<h2 class="sec" id="cp-rocket" style="background:#e63946;color:#fff">쿠팡 로켓배송 <span style="font-size:13px;font-weight:400">20개</span></h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><span class="disc">10%</span><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/2026/09/29/16/5/cade7e2e-1fb3-4824-9591-6466a3c77a4e.jpg" alt="가호, 문학동네, 무라카미 하루키" loading="lazy"></div>
