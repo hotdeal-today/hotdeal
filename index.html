@@ -46,6 +46,9 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
 .searchbar input{width:100%;box-sizing:border-box;padding:13px 16px;font-size:16px;border:2px solid #ffcf00;border-radius:28px;outline:none;background:#fff}
 .searchbar input:focus{border-color:#f5b800}
 #searchInfo{margin-top:10px;font-size:14px;font-weight:700;color:#8a6d00}
+.chnav{position:sticky;top:0;z-index:60;display:flex;gap:8px;background:#fffbe6;padding:10px 0}
+.chnav a{flex:1;text-align:center;padding:10px 0;border-radius:999px;background:#fff;border:1px solid #f0e6b8;font-weight:700;font-size:15px;color:#333;text-decoration:none}
+#sec-toss,#sec-coupang,#sec-naver{scroll-margin-top:76px}
 </style>
 </head>
 <body>
@@ -66,7 +69,8 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
 <input type="text" id="searchInput" placeholder="상품명을 입력해 보세요">
 <div id="searchInfo" style="display:none"></div>
 </div>
-<h2 class="sec sec-deal">오늘 하루 특가</h2>
+<nav class="chnav"><a href="#sec-toss">토스</a><a href="#sec-coupang">쿠팡</a><a href="#sec-naver">네이버</a></nav>
+<h2 class="sec sec-deal" id="sec-toss">오늘 하루 특가</h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="disc">66%</span><img src="https://shopping.toss.im/live/temp/2026-08-19/0a772c5e-a39c-483a-901f-cf08c10f1f4d.jpeg" alt="맘스럽 시그니처코튼 물티슈, 100매입, 10팩, 1개" loading="lazy"></div>
@@ -8630,6 +8634,8 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
 </div></div>
 </div>
 <div class="ad">[광고] 링크 구매 시 수수료를 지급받습니다.</div>
+<div class="wrap">
+<span id="sec-coupang"></span>
 <!--COUPANG-START-->
 <h2 class="sec" style="background:#ff9f1c;color:#fff">쿠팡 골드박스 <span style="font-size:13px;font-weight:400">7개</span></h2>
 <div class="grid">
@@ -9437,6 +9443,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
     </div>
 </div>
 <!--COUPANG-END-->
+<span id="sec-naver"></span>
 <!--NAVER-START-->
 <h2 class="sec" style="background:#03c75a;color:#fff">네이버 오늘의 핫딜 상품 <span style="font-size:13px;font-weight:400">17개</span></h2>
 <h2 class="sec" style="background:#03c75a;color:#fff">가습기 <span style="font-size:13px;font-weight:400">3개</span></h2>
@@ -9625,6 +9632,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
     </div>
 </div>
 <!--NAVER-END-->
+</div>
 <footer>가격·재고는 판매처 사정에 따라 변동될 수 있습니다.<br>최종 구매 전 판매 페이지에서 확인해 주세요.</footer>
 <script>
 document.querySelectorAll('.tab').forEach(function(t){
