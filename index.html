@@ -49,6 +49,11 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
 .chnav{position:sticky;top:0;z-index:60;display:flex;gap:8px;background:#fffbe6;padding:10px 0}
 .chnav a{flex:1;text-align:center;padding:10px 0;border-radius:999px;background:#fff;border:1px solid #f0e6b8;font-weight:700;font-size:15px;color:#333;text-decoration:none}
 #sec-toss,#sec-coupang,#sec-naver{scroll-margin-top:76px}
+.catnav{margin-bottom:8px}
+.catrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}
+.catlabel{font-weight:800;font-size:13px;color:#8a6d00;min-width:36px}
+.catrow a{padding:6px 12px;border-radius:999px;background:#fff;border:1px solid #f0e6b8;font-size:13px;color:#333;text-decoration:none}
+h2.sec{scroll-margin-top:76px}
 </style>
 </head>
 <body>
@@ -70,6 +75,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
 <div id="searchInfo" style="display:none"></div>
 </div>
 <nav class="chnav"><a href="#sec-toss">토스</a><a href="#sec-coupang">쿠팡</a><a href="#sec-naver">네이버</a></nav>
+<div class="catnav"><div class="catrow"><span class="catlabel">토스</span><a href="#sec-toss">오늘 하루 특가</a><a href="#sec-best">많이 팔리는 BEST</a><a href="#sec-cat">카테고리 인기 상품</a></div><div class="catrow"><span class="catlabel">쿠팡</span><a href="#cp-goldbox">골드박스</a><a href="#cp-rocket">로켓배송관</a><a href="#cp-fresh">로켓프레시</a><a href="#cp-new">이달의 신상</a><a href="#cp-wow">와우회원 할인</a></div><div class="catrow"><span class="catlabel">네이버</span><a href="#nv-humid">가습기</a><a href="#nv-digital">가전·디지털</a><a href="#nv-life">생활잡화</a><a href="#nv-beauty">뷰티</a><a href="#nv-fashion">패션잡화</a></div></div>
 <h2 class="sec sec-deal" id="sec-toss">오늘 하루 특가</h2>
 <div class="grid">
     <div class="card">
@@ -313,7 +319,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
       </div>
     </div>
 </div>
-<h2 class="sec sec-best">지금 많이 팔리는 BEST</h2>
+<h2 class="sec sec-best" id="sec-best">지금 많이 팔리는 BEST</h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><span class="disc">49%</span><img src="https://shopping.toss.im/live/taca/ai/v2/OWI2ZTQ0/VllWaW90U2x6SzZxNWxWR3FzelhVMU5xamxsYWMzcWxTVlZWckkwY1RTcz0.png" alt="아라솔 구운란, 대란, 30구, 2개" loading="lazy"></div>
@@ -1300,7 +1306,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
       </div>
     </div>
 </div>
-<h2 class="sec sec-cat">카테고리 인기 상품</h2>
+<h2 class="sec sec-cat" id="sec-cat">카테고리 인기 상품</h2>
 <div class="tabs"><button class="tab active" data-cat="all">전체 보기</button><button class="tab" data-cat="뷰티">뷰티</button><button class="tab" data-cat="패션의류잡화">패션의류잡화</button><button class="tab" data-cat="식품">식품</button><button class="tab" data-cat="가전/디지털">가전/디지털</button><button class="tab" data-cat="가구/홈데코">가구/홈데코</button><button class="tab" data-cat="생활용품">생활용품</button><button class="tab" data-cat="출산/유아동">출산/유아동</button><button class="tab" data-cat="스포츠/레져">스포츠/레져</button><button class="tab" data-cat="주방용품">주방용품</button><button class="tab" data-cat="반려/애완용품">반려/애완용품</button><button class="tab" data-cat="문구/오피스">문구/오피스</button><button class="tab" data-cat="자동차용품">자동차용품</button><button class="tab" data-cat="도서">도서</button><button class="tab" data-cat="여행/취미">여행/취미</button><button class="tab" data-cat="완구/취미">완구/취미</button><button class="tab" data-cat="음반/DVD">음반/DVD</button></div>
 <div class="panel active" data-cat="all"><div class="grid">
     <div class="card">
@@ -8637,7 +8643,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
 <div class="wrap">
 <span id="sec-coupang"></span>
 <!--COUPANG-START-->
-<h2 class="sec" style="background:#ff9f1c;color:#fff">쿠팡 골드박스 <span style="font-size:13px;font-weight:400">7개</span></h2>
+<h2 class="sec" id="cp-goldbox" style="background:#ff9f1c;color:#fff">쿠팡 골드박스 <span style="font-size:13px;font-weight:400">7개</span></h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><span class="disc">25%</span><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/rs_quotation_api/hvbnvykc/1712f55c21a943e0b0b4a6356b8f7c1d.jpg" alt="마이싹 골지 롱롱 양말 10켤레" loading="lazy"></div>
@@ -8710,7 +8716,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
       </div>
     </div>
 </div>
-<h2 class="sec" style="background:#e63946;color:#fff">쿠팡 로켓배송관 <span style="font-size:13px;font-weight:400">20개</span></h2>
+<h2 class="sec" id="cp-rocket" style="background:#e63946;color:#fff">쿠팡 로켓배송관 <span style="font-size:13px;font-weight:400">20개</span></h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><span class="disc">10%</span><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/2026/09/29/16/5/cade7e2e-1fb3-4824-9591-6466a3c77a4e.jpg" alt="가호, 문학동네, 무라카미 하루키" loading="lazy"></div>
@@ -8913,7 +8919,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
       </div>
     </div>
 </div>
-<h2 class="sec" style="background:#2ec4b6;color:#fff">쿠팡 로켓프레시 <span style="font-size:13px;font-weight:400">20개</span></h2>
+<h2 class="sec" id="cp-fresh" style="background:#2ec4b6;color:#fff">쿠팡 로켓프레시 <span style="font-size:13px;font-weight:400">20개</span></h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><span class="disc">55%</span><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/z9joq3dq/7dd06f108d334da7bcaf45afc0d73753.jpg" alt="동원 핑거크랩스, 40g, 1개" loading="lazy"></div>
@@ -9116,7 +9122,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
       </div>
     </div>
 </div>
-<h2 class="sec" style="background:#4361ee;color:#fff">쿠팡 이달의 신상 <span style="font-size:13px;font-weight:400">12개</span></h2>
+<h2 class="sec" id="cp-new" style="background:#4361ee;color:#fff">쿠팡 이달의 신상 <span style="font-size:13px;font-weight:400">12개</span></h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2026/09/10/6/3/3246a67b-443d-4556-818e-ea271f4485ec.jpg" alt="Apple 2026 애플워치 시리즈 12, 다크 브론즈, 46mm, GPS+Cellular, 알루미늄, 올리브 스포츠 밴드, S/M" loading="lazy"></div>
@@ -9239,7 +9245,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
       </div>
     </div>
 </div>
-<h2 class="sec" style="background:#7b2d8b;color:#fff">쿠팡 와우회원 할인 <span style="font-size:13px;font-weight:400">20개</span></h2>
+<h2 class="sec" id="cp-wow" style="background:#7b2d8b;color:#fff">쿠팡 와우회원 할인 <span style="font-size:13px;font-weight:400">20개</span></h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><span class="disc">25%</span><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/2026/10/02/11/1/71c76e0b-8b8d-457d-8f8c-dbd9269779dd.jpg" alt="블라우풍트 ANC 오픈형 노이즈 캔슬링 블루투스 이어폰, IVORY, BLP-BE323IV" loading="lazy"></div>
@@ -9446,7 +9452,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
 <span id="sec-naver"></span>
 <!--NAVER-START-->
 <h2 class="sec" style="background:#03c75a;color:#fff">네이버 오늘의 핫딜 상품 <span style="font-size:13px;font-weight:400">17개</span></h2>
-<h2 class="sec" style="background:#03c75a;color:#fff">가습기 <span style="font-size:13px;font-weight:400">3개</span></h2>
+<h2 class="sec" id="nv-humid" style="background:#1c7ed6;color:#fff">가습기 <span style="font-size:13px;font-weight:400">3개</span></h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><span class="disc">18%</span><img src="https://shop-phinf.pstatic.net/20261002_80/1790933134988qeeLy_JPEG/59357730091629205_1148420262.jpg?type=o1000" alt="케어팟 큐브 프로 X55V 스마트IoT 안전한 저온가열 자동살균 스텐 대용량 신생아 가습기" loading="lazy"></div>
@@ -9479,7 +9485,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
       </div>
     </div>
 </div>
-<h2 class="sec" style="background:#1f8a4c;color:#fff">가전·디지털 <span style="font-size:13px;font-weight:400">4개</span></h2>
+<h2 class="sec" id="nv-digital" style="background:#1f8a4c;color:#fff">가전·디지털 <span style="font-size:13px;font-weight:400">4개</span></h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><span class="disc">48%</span><img src="https://shop-phinf.pstatic.net/20250916_262/1757984139158hvvzY_JPEG/33948813275040013_1119398860.jpg?type=o1000" alt="아이룸 무선 청소기 차이슨 제트클린 가벼운 BLDC 핸디 스틱 진공 단품 화이트" loading="lazy"></div>
@@ -9522,7 +9528,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
       </div>
     </div>
 </div>
-<h2 class="sec" style="background:#12b886;color:#fff">생활·이미용 <span style="font-size:13px;font-weight:400">3개</span></h2>
+<h2 class="sec" id="nv-life" style="background:#12b886;color:#fff">생활잡화 <span style="font-size:13px;font-weight:400">3개</span></h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><span class="disc">10%</span><img src="https://shop-phinf.pstatic.net/20230626_159/16877592001778AHpL_PNG/10015319011421878_1318443928.png?type=o1000" alt="유닉스 헤어 고데기 UCI-A2521N 세라믹코팅" loading="lazy"></div>
@@ -9555,7 +9561,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
       </div>
     </div>
 </div>
-<h2 class="sec" style="background:#e64980;color:#fff">뷰티 <span style="font-size:13px;font-weight:400">4개</span></h2>
+<h2 class="sec" id="nv-beauty" style="background:#e64980;color:#fff">뷰티 <span style="font-size:13px;font-weight:400">4개</span></h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><span class="disc">42%</span><img src="https://shop-phinf.pstatic.net/20260918_83/17897019864423yNMP_JPEG/115333620442963211_976706952.jpg?type=o1000" alt="[N단독+증정] [녹는실리프팅] 앰플엔 하이퍼샷 펩타이드 앰플 80ml, 1개" loading="lazy"></div>
@@ -9598,7 +9604,7 @@ footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:
       </div>
     </div>
 </div>
-<h2 class="sec" style="background:#9775fa;color:#fff">패션잡화 <span style="font-size:13px;font-weight:400">3개</span></h2>
+<h2 class="sec" id="nv-fashion" style="background:#9775fa;color:#fff">패션잡화 <span style="font-size:13px;font-weight:400">3개</span></h2>
 <div class="grid">
     <div class="card">
       <div class="thumb"><span class="rank">1</span><span class="disc">30%</span><img src="https://shop-phinf.pstatic.net/20250220_91/1740037788908oAMXX_JPEG/16547448055724503_2090639337.jpg?type=o1000" alt="원더워크 지압 수면 압박스타킹 압박밴드 허벅지 임산부 다리 붓기 관리" loading="lazy"></div>
