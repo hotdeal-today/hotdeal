@@ -9581,7 +9581,7 @@ h2.sec{scroll-margin-top:76px}
         </div>
       </div>
     </div>
-    <div class="card">
+    <div class="card" data-kw="지압판 발지압 발마사지 마사지보드">
       <div class="thumb"><span class="rank">22</span><span class="disc">38%</span><img src="https://hotdeal-today.github.io/hotdeal/assets/acuster.jpg" alt="아큐스터 Dubbel-Core base, sky blue, 1개" loading="lazy"></div>
       <div class="info">
         <p class="name">아큐스터 Dubbel-Core base, sky blue, 1개</p>
@@ -10164,7 +10164,8 @@ document.querySelectorAll('.tab').forEach(function(t){
     var count=0;
     cards.forEach(function(c){
       var nameEl=c.querySelector('.name');
-      var hit=nameEl && nameEl.textContent.toLowerCase().indexOf(q)>-1;
+      var kw=(c.getAttribute('data-kw')||'').toLowerCase();
+      var hit=(nameEl && nameEl.textContent.toLowerCase().indexOf(q)>-1) || (kw && kw.indexOf(q)>-1);
       c.style.display=hit?'':'none';
       if(hit && c.closest('.panel') && c.closest('.panel').getAttribute('data-cat')==='all') count++;
       if(hit && !c.closest('.panel')) count++;
