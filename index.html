@@ -11569,9 +11569,6 @@ h2.sec{scroll-margin-top:76px}
 <div class="grid" id="gm-grid"></div>
 <style>
 .gm-note{font-size:13px;color:#8a6d00;line-height:1.6;margin:0 0 12px}
-.gm-top{display:flex;justify-content:space-between;align-items:center;padding:10px 10px 0}
-.gm-disc{background:#e60012;color:#fff;font-size:13px;font-weight:700;padding:3px 8px;border-radius:8px}
-.gm-rank{background:#ffcf00;color:#222;font-size:13px;font-weight:800;min-width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.2);padding:0 6px}
 .gm-comm{font-size:12px;color:#2ec4b6;font-weight:700}
 .gm-loading{text-align:center;padding:40px 0;font-size:15px;color:#8a6d00}
 </style>
@@ -11584,13 +11581,14 @@ h2.sec{scroll-margin-top:76px}
   function fmt(n){return Number(n).toLocaleString('en-US');}
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function card(p){
-    var disc=p.discount?('<span class="gm-disc">'+esc(p.discount)+'</span>'):'<span></span>';
-    var orig=p.original_price?('<span class="orig">'+fmt(p.original_price)+'원</span>'):'';
-    return '<div class="card">'
-      +'<div class="gm-top">'+disc+'<span class="gm-rank">'+p.rank+'</span></div>'
+    var disc=p.discount?('<span class="disc">'+esc(p.discount)+'</span>'):'';
+    var orig=p.original_price?(' <span class="orig">'+fmt(p.original_price)+'원</span>'):'';
+    var img=p.image?('<img src="'+esc(p.image)+'" alt="'+esc(p.name)+'" loading="lazy">'):'';
+    return '<div class="card" data-kw="'+esc(p.name)+'">'
+      +'<div class="thumb"><span class="rank">'+p.rank+'</span>'+disc+img+'</div>'
       +'<div class="info">'
       +'<p class="name">'+esc(p.name)+'</p>'
-      +'<p class="price">'+fmt(p.coupon_price)+'원 '+orig+'</p>'
+      +'<p class="price">'+fmt(p.coupon_price)+'원'+orig+'</p>'
       +'<span class="review">&#9733; '+p.rating+' ('+fmt(p.reviews)+')</span>'
       +'<span class="gm-comm">수수료 '+p.commission_pct+'%</span>'
       +'<div class="btns"><a class="btn buy" href="'+esc(p.curator_link)+'" target="_blank" rel="sponsored noopener">구매하기</a></div>'
