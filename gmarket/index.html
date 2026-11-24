@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지마켓 큐레이터 특가 BEST | 인기 상품 보기</title>
+<meta name="description" content="지마켓 큐레이터 인기 상품 396개. 쿠폰적용가로 확인하고 바로 구매하세요.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="지마켓 큐레이터 특가 BEST">
+<meta property="og:description" content="지마켓 인기 상품 396개를 쿠폰적용가로 한눈에.">
+<meta property="og:url" content="https://hotdeal-today.github.io/hotdeal/gmarket/">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:#fffbe6;color:#222}
+header{background:#ffcf00;padding:20px 16px;text-align:center;position:sticky;top:0;z-index:10;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+header h1{font-size:22px;font-weight:800}
+header p{font-size:13px;margin-top:4px;color:#5a4a00}
+.ad{text-align:center;font-size:12px;color:#888;padding:10px;background:#fff8dc}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+h2.sec{font-size:19px;margin:28px 0 12px;padding:10px 14px;background:#ffcf00;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,.12)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:#fff;border:1px solid #f0e6b8;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.cardtop{display:flex;justify-content:space-between;align-items:center;padding:10px 10px 0}
+.disc{background:#e60012;color:#fff;font-size:13px;font-weight:700;padding:3px 8px;border-radius:8px}
+.rank{background:#ffcf00;color:#222;font-size:13px;font-weight:800;min-width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.2);padding:0 6px}
+.info{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1}
+.name{font-size:13px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px}
+.price{font-size:16px;font-weight:800}
+.orig{font-size:12px;color:#999;text-decoration:line-through;font-weight:400;margin-left:4px}
+.review{font-size:12px;color:#f5a623}
+.comm{font-size:12px;color:#2ec4b6;font-weight:700}
+.btns{display:flex;gap:6px;margin-top:auto}
+.btn{flex:1;text-align:center;font-size:13px;font-weight:700;padding:9px 0;border-radius:8px;text-decoration:none}
+.btn.buy{background:#ffcf00;color:#222}
+footer{text-align:center;padding:24px 16px;font-size:12px;color:#888;background:#fff8dc;margin-top:32px}
+.kakao{background:#3a2c00;color:#ffcf00;text-align:center;padding:16px 12px}
+.kakao .kt{font-size:15px;font-weight:800;margin-bottom:10px;color:#ffdf3d}
+.kakao .kb{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.kakao a{display:inline-block;font-size:14px;font-weight:700;padding:10px 18px;border-radius:24px;text-decoration:none;background:#fee500;color:#3c1e1e}
+.kakao a.chan{background:#fff;color:#3c1e1e}
+.searchbar{margin:4px 0 18px}
+.searchbar input{width:100%;box-sizing:border-box;padding:13px 16px;font-size:16px;border:2px solid #ffcf00;border-radius:28px;outline:none;background:#fff}
+.searchbar input:focus{border-color:#f5b800}
+#searchInfo{margin-top:10px;font-size:14px;font-weight:700;color:#8a6d00}
+.backlink{display:block;text-align:center;margin:12px 0 0;font-size:14px;font-weight:700;color:#8a6d00;text-decoration:none}
+.loading{text-align:center;padding:40px 0;font-size:15px;color:#8a6d00}
+.note{font-size:13px;color:#8a6d00;line-height:1.6;margin:0 0 12px}
+</style>
+</head>
+<body>
+<header>
+<h1>지마켓 큐레이터 특가 BEST</h1>
+<p>지마켓 인기 상품을 쿠폰적용가로 한눈에 &middot; 2026-11-24 기준</p>
+</header>
+<div class="ad">[광고] 링크 구매 시 수수료를 지급받습니다. 파트너스 활동으로 소정의 수수료를 받습니다.</div>
+<div class="kakao">
+<div class="kt">카카오톡으로 특가 알림 받기</div>
+<div class="kb">
+<a href="https://open.kakao.com/o/pVhF15Qi" target="_blank" rel="noopener">특가 오픈채팅방 참여하기</a>
+<a href="https://pf.kakao.com/_cxffxbb" target="_blank" rel="noopener" class="chan">카카오톡 채널 추가하기</a>
+</div>
+</div>
+<div class="wrap">
+<a class="backlink" href="../">&larr; 오늘의 핫딜 BEST로 돌아가기</a>
+<div class="searchbar">
+<input type="text" id="searchInput" placeholder="상품명을 입력해 보세요">
+<div id="searchInfo" style="display:none"></div>
+</div>
+<h2 class="sec" id="sec-gmarket">지마켓 인기 상품 <span id="countLabel"></span></h2>
+<p class="note">지마켓 큐레이터 인기순 400개 중 링크가 확인된 396개 상품입니다. 가격은 쿠폰적용가 기준이며 판매처 사정에 따라 변동될 수 있습니다.</p>
+<div id="loading" class="loading">상품 목록을 불러오는 중입니다...</div>
+<div class="grid" id="grid"></div>
+</div>
+<footer>가격&middot;재고는 판매처 사정에 따라 변동될 수 있습니다.<br>최종 구매 전 판매 페이지에서 확인해 주세요.<br>파트너스 활동으로 소정의 수수료를 받습니다.</footer>
+<script>
+(function(){
+  var grid=document.getElementById('grid');
+  var loading=document.getElementById('loading');
+  var info=document.getElementById('searchInfo');
+  var countLabel=document.getElementById('countLabel');
+  function fmt(n){return Number(n).toLocaleString('en-US');}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function card(p){
+    var disc=p.discount?('<span class="disc">'+esc(p.discount)+'</span>'):'';
+    var orig=p.original_price?('<span class="orig">'+fmt(p.original_price)+'원</span>'):'';
+    return '<div class="card">'
+      +'<div class="cardtop">'+disc+'<span class="rank">'+p.rank+'</span></div>'
+      +'<div class="info">'
+      +'<p class="name">'+esc(p.name)+'</p>'
+      +'<p class="price">'+fmt(p.coupon_price)+'원 '+orig+'</p>'
+      +'<span class="review">&#9733; '+p.rating+' ('+fmt(p.reviews)+')</span>'
+      +'<span class="comm">수수료 '+p.commission_pct+'%</span>'
+      +'<div class="btns"><a class="btn buy" href="'+esc(p.curator_link)+'" target="_blank" rel="sponsored noopener">구매하기</a></div>'
+      +'</div></div>';
+  }
+  fetch('products-2026-11-24.json')
+    .then(function(r){if(!r.ok) throw new Error('HTTP '+r.status); return r.json();})
+    .then(function(data){
+      var items=data.products||[];
+      loading.style.display='none';
+      countLabel.textContent='('+items.length+'개)';
+      grid.innerHTML=items.map(card).join('');
+    })
+    .catch(function(){
+      loading.textContent='상품 목록을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.';
+    });
+  var input=document.getElementById('searchInput');
+  input.addEventListener('input',function(){
+    var q=input.value.trim().toLowerCase();
+    var cards=grid.querySelectorAll('.card');
+    if(!q){
+      cards.forEach(function(c){c.style.display='';});
+      info.style.display='none';
+      return;
+    }
+    var count=0;
+    cards.forEach(function(c){
+      var nameEl=c.querySelector('.name');
+      var hit=nameEl && nameEl.textContent.toLowerCase().indexOf(q)>-1;
+      c.style.display=hit?'':'none';
+      if(hit) count++;
+    });
+    info.style.display='block';
+    info.textContent='검색 결과 '+count+'개';
+  });
+})();
+</script>
+</body>
+</html>
