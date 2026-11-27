@@ -11709,5 +11709,201 @@ document.querySelectorAll('.tab').forEach(function(t){
   });
 })();
 </script>
+<script>
+/* 핫딜 바로 열기 (?id= / ?p=) + 최신 상품 상단 고정 + 링크 복사 (2026-11-27)
+   기존 코드·검색창·상품 데이터는 건드리지 않음. 이 블록 하나만 추가됨. */
+(function(){
+  if(window.__hotdealDeepLink)return;
+  window.__hotdealDeepLink=true;
+  var css=[
+    '#latestHero{margin:0 0 14px}',
+    '#latestHero .hero-grid{display:grid;grid-template-columns:1fr;gap:12px}',
+    '@media(min-width:640px){#latestHero .hero-grid{grid-template-columns:repeat(3,1fr)}}',
+    '.hero-card{background:#fff;border:2px solid #ffcf00;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}',
+    '.hero-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block}',
+    '.hero-card .info{padding:12px;display:flex;flex-direction:column;gap:6px;flex:1}',
+    '.hero-card .name{font-size:14px;font-weight:700;line-height:1.4}',
+    '.hero-card .price{font-size:18px;font-weight:800}',
+    '.hero-card .review{font-size:12px;color:#f5a623}',
+    '.hero-card .btns{display:flex;gap:6px;margin-top:auto}',
+    '.card .thumb .copy-link{position:absolute;right:8px;bottom:8px;z-index:2;background:rgba(0,0,0,.65);color:#fff;border:none;border-radius:999px;font-size:12px;font-weight:700;padding:5px 10px;cursor:pointer}',
+    '.card .thumb .copy-link.done{background:#ffcf00;color:#222}',
+    '.hero-card .copy-link,.dl-box .copy-link{flex:1;text-align:center;font-size:13px;font-weight:700;padding:9px 0;border-radius:8px;border:1.5px solid #ffcf00;background:#fff;color:#8a6d00;cursor:pointer}',
+    '.hero-card .copy-link.done,.dl-box .copy-link.done{background:#ffcf00;color:#222}',
+    '#dlModal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}',
+    '.dl-box{background:#fff;border-radius:16px;max-width:480px;width:100%;max-height:90vh;overflow:auto;position:relative}',
+    '.dl-box>img{width:100%;aspect-ratio:1;object-fit:cover;display:block}',
+    '.dl-box .info{padding:16px;display:flex;flex-direction:column;gap:10px}',
+    '.dl-box .name{font-size:17px;font-weight:800;line-height:1.4}',
+    '.dl-box .price{font-size:22px;font-weight:800}',
+    '.dl-box .review{font-size:13px;color:#f5a623}',
+    '.dl-badge{display:inline-block;background:#e60012;color:#fff;font-size:13px;font-weight:700;padding:3px 8px;border-radius:8px;margin-right:6px}',
+    '.dl-buy{display:block;text-align:center;font-size:17px;font-weight:800;padding:14px 0;border-radius:10px;background:#ffcf00;color:#222;text-decoration:none}',
+    '.dl-close{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(0,0,0,.55);color:#fff;font-size:18px;cursor:pointer}'
+  ].join('\n');
+  var st=document.createElement('style');
+  st.textContent=css;
+  document.head.appendChild(st);
+
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function param(k){
+    try{var v=new URLSearchParams(location.search).get(k);return v?v.trim():'';}catch(e){return '';}
+  }
+  function channelLabel(href){
+    href=href||'';
+    if(href.indexOf('coupang.com')>-1)return '쿠팡에서 바로 구매하기';
+    if(href.indexOf('toss.shopping')>-1)return '토스에서 바로 구매하기';
+    if(href.indexOf('naver.com')>-1)return '네이버에서 바로 구매하기';
+    if(href.indexOf('gmarket')>-1)return '지마켓에서 바로 구매하기';
+    return '바로 구매하기';
+  }
+  function cardData(card){
+    var n=card.querySelector('.name'),im=card.querySelector('.thumb img'),
+        pr=card.querySelector('.price'),rv=card.querySelector('.review'),
+        by=card.querySelector('a.btn.buy'),dc=card.querySelector('.disc');
+    return {
+      name:n?n.textContent.trim():'',
+      img:im?(im.getAttribute('src')||''):'',
+      priceHTML:pr?pr.innerHTML:'',
+      review:rv?rv.textContent.trim():'',
+      href:by?(by.getAttribute('href')||''):'',
+      disc:dc?dc.textContent.trim():''
+    };
+  }
+  function deepLink(name){return location.origin+location.pathname+'?p='+encodeURIComponent(name);}
+  function cards(){return Array.prototype.slice.call(document.querySelectorAll('.card'));}
+  function byName(q){
+    q=q.toLowerCase();
+    var list=cards(),i,d;
+    for(i=0;i<list.length;i++){d=cardData(list[i]);if(d.name.toLowerCase()===q)return list[i];}
+    for(i=0;i<list.length;i++){d=cardData(list[i]);if(d.name.toLowerCase().indexOf(q)>-1)return list[i];}
+    return null;
+  }
+  function findCard(){
+    var id=param('id'),p=param('p'),list=cards(),i,d;
+    if(p){var m=byName(p);if(m)return m;}
+    if(id){
+      var il=id.toLowerCase();
+      for(i=0;i<list.length;i++){d=cardData(list[i]);if(d.href&&d.href.toLowerCase().indexOf(il)>-1)return list[i];}
+      return byName(id);
+    }
+    return null;
+  }
+  var modal=null,userClosed=false;
+  function closeModal(){if(modal){modal.parentNode.removeChild(modal);modal=null;document.removeEventListener('keydown',onKey);}}
+  function onKey(e){if(e.key==='Escape'){userClosed=true;closeModal();}}
+  function openModal(d){
+    closeModal();
+    modal=document.createElement('div');
+    modal.id='dlModal';
+    modal.innerHTML=
+      '<div class="dl-box">'
+      +'<button type="button" class="dl-close" aria-label="닫기">\u2715</button>'
+      +(d.img?'<img src="'+esc(d.img)+'" alt="'+esc(d.name)+'">':'')
+      +'<div class="info">'
+      +'<p class="name">'+(d.disc?'<span class="dl-badge">'+esc(d.disc)+'</span>':'')+esc(d.name)+'</p>'
+      +(d.priceHTML?'<p class="price">'+d.priceHTML+'</p>':'')
+      +(d.review?'<span class="review">'+esc(d.review)+'</span>':'')
+      +'<a class="dl-buy" href="'+esc(d.href)+'" target="_blank" rel="sponsored noopener">'+esc(channelLabel(d.href))+'</a>'
+      +'<button type="button" class="copy-link" data-link="'+esc(deepLink(d.name))+'">링크 복사</button>'
+      +'</div></div>';
+    modal.addEventListener('click',function(e){
+      if(e.target===modal||(e.target.closest&&e.target.closest('.dl-close'))){userClosed=true;closeModal();}
+    });
+    document.addEventListener('keydown',onKey);
+    document.body.appendChild(modal);
+  }
+  function tryDeepLink(){
+    if(modal||userClosed)return false;
+    var t=findCard();
+    if(t){openModal(cardData(t));return true;}
+    return false;
+  }
+  function injectCopyButtons(root){
+    var list=(root||document).querySelectorAll('.card');
+    for(var i=0;i<list.length;i++){
+      var c=list[i];
+      if(c.querySelector('.copy-link'))continue;
+      var th=c.querySelector('.thumb'),d=cardData(c);
+      if(!th||!d.name)continue;
+      var b=document.createElement('button');
+      b.type='button';b.className='copy-link';b.textContent='링크 복사';
+      b.setAttribute('data-link',deepLink(d.name));
+      th.appendChild(b);
+    }
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target&&e.target.closest?e.target.closest('.copy-link'):null;
+    if(!b)return;
+    var url=b.getAttribute('data-link');
+    if(!url)return;
+    function done(){
+      var t=b.textContent;b.textContent='복사됨';b.classList.add('done');
+      setTimeout(function(){b.textContent=t;b.classList.remove('done');},1500);
+    }
+    function fallback(){
+      var ta=document.createElement('textarea');
+      ta.value=url;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');done();}catch(err){}
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done,fallback);}
+    else{fallback();}
+  });
+  function buildHero(){
+    var h=document.getElementById('sec-toss');
+    if(!h)return;
+    var g=h.nextElementSibling;
+    if(!g||!g.classList.contains('grid'))return;
+    var list=g.querySelectorAll('.card');
+    if(!list.length)return;
+    var sb=document.querySelector('.searchbar');
+    if(!sb||!sb.parentNode)return;
+    var hero=document.createElement('div');
+    hero.id='latestHero';
+    hero.innerHTML='<h2 class="sec">최신 핫딜</h2><div class="hero-grid"></div>';
+    var wrap=hero.querySelector('.hero-grid');
+    var n=Math.min(3,list.length),added=0;
+    for(var i=0;i<n;i++){
+      var d=cardData(list[i]);
+      if(!d.name)continue;
+      var el=document.createElement('div');
+      el.className='hero-card';
+      el.innerHTML=
+        (d.img?'<img src="'+esc(d.img)+'" alt="'+esc(d.name)+'" loading="lazy">':'')
+        +'<div class="info">'
+        +'<p class="name">'+esc(d.name)+'</p>'
+        +(d.priceHTML?'<p class="price">'+d.priceHTML+'</p>':'')
+        +(d.review?'<span class="review">'+esc(d.review)+'</span>':'')
+        +'<div class="btns">'
+        +'<a class="btn buy" href="'+esc(d.href)+'" target="_blank" rel="sponsored noopener">구매하기</a>'
+        +'<button type="button" class="copy-link" data-link="'+esc(deepLink(d.name))+'">링크 복사</button>'
+        +'</div></div>';
+      wrap.appendChild(el);
+      added++;
+    }
+    if(!added)return;
+    sb.parentNode.insertBefore(hero,sb);
+    var si=document.getElementById('searchInput');
+    if(si){
+      si.addEventListener('input',function(){
+        hero.style.display=si.value.trim()?'none':'';
+      });
+    }
+  }
+  injectCopyButtons(document);
+  if(!tryDeepLink()){buildHero();}
+  if(window.MutationObserver){
+    var pending=false;
+    var mo=new MutationObserver(function(){
+      if(pending)return;pending=true;
+      setTimeout(function(){pending=false;injectCopyButtons(document);tryDeepLink();},300);
+    });
+    mo.observe(document.body,{childList:true,subtree:true});
+  }
+})();
+
+</script>
 </body>
 </html>
